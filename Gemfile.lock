@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.3.0)
+    curses (1.2.0)
+    minitest (5.10.1)
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -19,6 +21,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  curses
+  minitest
   rubocop
 
 BUNDLED WITH

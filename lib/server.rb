@@ -1,24 +1,24 @@
 require 'socket'
 require 'io/wait'
 require 'server_streamer'
-require 'data_packing'
+require 'data_packer'
 
 class Server
-  include DataPacking
+  include DataPacker
 
-  DEFAULT_PORT = 11840
+  DEFAULT_PORT = 33771
 
-  def initialize(map: map, port: port)
-    @tick_counter = 0
-    @map = map
+  def initialize(sim:, port:)
+    @map = sim.map
+    @step_counter = 0
     @server = TCPServer.new(port)
     @clients = []
 
     puts "Server running on port #{port} ..."
   end
 
-  def tick
-    puts(@tick_counter += 1)
+  def step
+    puts(@step_counter += 1)
     connect_new_clients
     check_for_input
     update_clients
@@ -35,7 +35,7 @@ private
       puts "|-> Connect: (#{x}, #{y}, #{w}, #{h})"
       write_frame([@map.w, @map.h], socket)
 
-      @clients << ServerStreamer.new(socket, x, y, w, h)
+      @clients << ServerStreamer.new(socket: socket, x: x, y: y, w: w, h: h)
     rescue IO::EAGAINWaitReadable
       # happens if the `accept_nonblock` call would block
       # not sure there's much to be done here, it's going

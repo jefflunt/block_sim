@@ -10,5 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/jefflunt/block_sim'
   s.license     = 'MIT'
 
+  s.add_development_dependency 'curses', '~> 1.2'
   s.add_development_dependency 'minitest', '~> 5.10'
+  s.add_development_dependency 'rubocop', '~> 0.47'
 end

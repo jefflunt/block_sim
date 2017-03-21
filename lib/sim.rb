@@ -7,8 +7,8 @@ class Sim
     @turn_length = turn_length
   end
 
-  def tick
-    map.cells.each{ |c| c.tick }
+  def step
+    map.blocks.each{ |b| b.step if b }
     sleep(turn_length)
   end
 end

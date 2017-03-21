@@ -1,4 +1,4 @@
-module DataPacking
+module DataPacker
   FRAME_PACKING = 'L>*'
 
   def read_frame(socket)
